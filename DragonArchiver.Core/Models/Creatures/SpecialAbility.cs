@@ -2,7 +2,7 @@
 
 namespace DragonArchiver.Core.Models;
 
-public class SpecialAbility
+public abstract class SpecialAbility
 {
 	[JsonPropertyName("name")] public string? Name { get; set; }
 	[JsonPropertyName("desc")] public string? Desc { get; set; }

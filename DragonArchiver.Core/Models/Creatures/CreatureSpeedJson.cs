@@ -2,7 +2,7 @@
 
 namespace DragonArchiver.Core.Models;
 
-public class CreatureSpeedJson
+public abstract class CreatureSpeedJson
 {
 	[JsonPropertyName("walk")] public int Walk { get; set; }
 	[JsonPropertyName("swim")] public int Swim { get; set; }

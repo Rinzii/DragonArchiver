@@ -1,6 +1,7 @@
 ﻿namespace DragonArchiver.Core.Models
 {
-    internal class Player : Creature
+	/// <inheritdoc />
+	internal class Player : Creature
     {
 	    public override string? Name { get; set; }
 	    public override string? Size { get; set; }

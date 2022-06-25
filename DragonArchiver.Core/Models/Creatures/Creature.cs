@@ -41,7 +41,6 @@ namespace DragonArchiver.Core.Models
 		// sleight of hand
 		[JsonPropertyName("stealth")] public abstract int? Stealth { get; set; }
 		[JsonPropertyName("survival")] public abstract int? Survival { get; set; }
-
 		[JsonPropertyName("strength_save")] public abstract int? StrengthSave { get; set; }
 		[JsonPropertyName("dexterity_save")] public abstract int? DexteritySave { get; set; } 
 		[JsonPropertyName("constitution_save")] public abstract int ConstitutionSave { get; set; }		

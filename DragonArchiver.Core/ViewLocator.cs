@@ -1,6 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using CommunityToolkit.Mvvm.ComponentModel;
 using DragonArchiver.Core.ViewModels;
 
 namespace DragonArchiver.Core
@@ -22,7 +23,7 @@ namespace DragonArchiver.Core
 
         public bool Match(object data)
         {
-            return data is BaseViewModel;
+            return data is ObservableObject;
         }
     }
 }

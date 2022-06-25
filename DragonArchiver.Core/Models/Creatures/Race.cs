@@ -3,13 +3,13 @@ using System.Text.Json.Serialization;
 
 namespace DragonArchiver.Core.Models
 {
-    public class Asi
+    public abstract class Asi
     {
         [JsonPropertyName("attributes")] public List<string>? Attributes { get; set; }
         [JsonPropertyName("value")] public int Value { get; set; }
     }
 
-    public class Race
+    public abstract class Race
     {
         [JsonPropertyName("name")] public string? Name { get; set; }
         [JsonPropertyName("desc")] public string? Desc { get; set; }
@@ -26,12 +26,12 @@ namespace DragonArchiver.Core.Models
         [JsonPropertyName("subtypes")] public List<Subtype>? Subtypes { get; set; }
     }
 
-    public class Speed
+    public abstract class Speed
     {
         [JsonPropertyName("walk")] public int Walk { get; set; }
     }
 
-    public class Subtype
+    public abstract class Subtype
     {
         [JsonPropertyName("name")] public string? Name { get; set; }
         [JsonPropertyName("desc")] public string? Desc { get; set; }
