@@ -33,7 +33,6 @@
         <Compile Remove="Data\**" />
         <EmbeddedResource Remove="Data\**" />
         <Folder Include="DB\" />
-        <Folder Include="Shared\" />
         <Folder Include="Repositories\" />
         <None Remove="Data\**" />
         <None Remove=".gitignore" />
