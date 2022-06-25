@@ -2,11 +2,11 @@
 using Serilog;
 using Jot;
 using Microsoft.Extensions.Logging;
-
 using System.Threading.Tasks;
 using DragonArchiver.Core.Services;
 using DragonArchiver.Core.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+
 
 
 namespace DragonArchiver.Core;
@@ -30,20 +30,23 @@ public class DragonArchiverBootstrapper : IAppBootstrapper<ShellViewModel>
         _loggerFactory = CreateLoggerFactory(BootstrapService.DefaultLogFileName);
 
         
-        ConfigureJotTracker(_tracker, services);
+        //ConfigureJotTracker(_tracker, services);
 
         _isStarting = false;
+    }
+    
+    private void ConfigureDragonArchiver(IServiceCollection services)
+    {
+        var bootstrapper = new BootstrapService(_loggerFactory.CreateLogger<BootstrapService>());
+        
     }
 
 
     public void ConfigureServices(IServiceCollection services)
     {
-        var windowManager = new WindowManager(new ViewLocator());
+        //var windowManager = new WindowManager(new ViewLocator());
 
-        services.AddSingleton<IWindowManager>(windowManager);
-        services.AddSingleton<IFileSelectService, FileSelectService>();
-        services.AddSingleton<IDiskExploreService, DiskExploreService>();
-        services.AddSingleton<IThemeService, ThemeService>();
+
     }
 
     public void ConfigureViews(IServiceCollection services)
@@ -68,10 +71,7 @@ public class DragonArchiverBootstrapper : IAppBootstrapper<ShellViewModel>
             services.AddTransient(vmType);
 
         services.AddSingleton<ShellViewModel>();
-        services.AddSingleton<EditorsViewModel>();
-        services.AddSingleton<ProjectTreeViewModel>();
-        services.AddSingleton<MenuViewModel>();
-        services.AddSingleton<StatusViewModel>();
+
     }
 
    

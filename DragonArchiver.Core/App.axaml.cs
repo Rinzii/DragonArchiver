@@ -29,9 +29,9 @@ namespace DragonArchiver.Core
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 var shellViewModel = provider.GetService<ShellViewModel>();
-                var shellView = provider.GetService<ShellView>();
-                shellView!.DataContext = shellViewModel;
-                desktop.MainWindow = shellView;
+                //var shellView = provider.GetService<ShellView>();
+                //shellView!.DataContext = shellViewModel;
+                //desktop.MainWindow = shellView;
 
             }
 

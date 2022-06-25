@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-//using ImageMagitek.Colors;
-//using ImageMagitek.Project.Serialization;
+using DragonArchiver.Core.Services;
 using Microsoft.Extensions.Logging;
 
 namespace DragonArchiver.Core.Services;
-
 
 /// <summary>
 /// Bootstraps the full ImageMagitek environment 
@@ -17,44 +15,41 @@ public class BootstrapService
 {
     private readonly ILogger _logger;
 
+    public static string DefaultLogFileName { get; } = "errorlog.txt";
+    public static string DefaultConfigurationFileName { get; } = "appsettings.json";
     
     public BootstrapService(ILogger logger)
     {
         _logger = logger;
     }
 
-
-
-
-    /*public virtual ICodecService CreateCodecService(string codecsPath, string schemaFileName)
+    public virtual AppSettings ReadConfiguration(string jsonFileName)
     {
-        var _codecService = new CodecService(schemaFileName);
-        var result = _codecService.LoadXmlCodecs(codecsPath);
-
-        if (result.Value is MagitekResults.Failed fail)
+        try
         {
-            _logger.LogError(string.Join(Environment.NewLine, fail.Reasons));
-        }
+            var json = File.ReadAllText(jsonFileName);
 
-        return _codecService;
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            var settings = JsonSerializer.Deserialize<AppSettings>(json, options);
+
+            var lowerDict = new Dictionary<string, string>();
+
+            return settings;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogCritical(ex, $"Failed to read the configuration file '{jsonFileName}'");
+            throw;
+        }
     }
 
-    public virtual IPluginService CreatePluginService(string pluginPath, ICodecService codecService)
-    {
-        var pluginService = new PluginService();
-        var fullPluginPath = Path.GetFullPath(pluginPath);
 
-        if (Directory.Exists(fullPluginPath))
-        {
-            pluginService.LoadCodecPlugins(fullPluginPath);
-            foreach (var codecPlugin in pluginService.CodecPlugins)
-            {
-                codecService.AddOrUpdateCodec(codecPlugin.Value);
-            }
-        }
 
-        return pluginService;
-    }*/
+
 
 
 }
